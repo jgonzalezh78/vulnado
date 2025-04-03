@@ -3,13 +3,14 @@ package com.scalesec.vulnado;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
+private Cowsay() {}
 
   private Cowsay() {}
 public class Cowsay {
   public static String run(String input) {
+Logger logger = Logger.getLogger(Cowsay.class.getName());
     ProcessBuilder processBuilder = new ProcessBuilder();
-    String cmd = "/usr/games/cowsay \"" + input.replaceAll("\\\"", "\\\\\"") + "\"";
+    String cmd = "/usr/games/cowsay \"" + input.replaceAll("\"", "\\\"") + "\"";
     Logger logger = Logger.getLogger(Cowsay.class.getName());
     processBuilder.command("bash", "-c", cmd.trim());
 
@@ -21,10 +22,10 @@ public class Cowsay {
 
       String line;
       while ((line = reader.readLine()) != null) {
-        output.append(line + "\n");
+        output.append(line).append("\n");
       }
     } catch (Exception e) {
-      // Debugging feature deactivated for production
+      logger.log(Level.SEVERE, "An error occurred while executing the command", e);
     }
     return output.toString();
   }
