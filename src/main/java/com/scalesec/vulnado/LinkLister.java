@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import java.net.*;
 
-import java.util.logging.Logger;
+private LinkLister() {}
 
-  private LinkLister() {}
+  List<String> result = new ArrayList<>();
 public class LinkLister {
   public static List<String> getLinks(String url) throws IOException {
     List<String> result = new ArrayList<>();
@@ -25,7 +25,7 @@ public class LinkLister {
   }
 
   public static List<String> getLinksV2(String url) throws BadRequest {
-    try {
+    logger.info(host);
       URL aUrl= new URL(url);
       String host = aUrl.getHost();
       logger.info(host);

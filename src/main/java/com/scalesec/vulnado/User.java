@@ -4,8 +4,6 @@ import java.util.logging.Logger;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
-import java.sql.ResultSet;
-import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 import javax.crypto.SecretKey;
 
