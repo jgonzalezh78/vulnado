@@ -9,11 +9,10 @@ import java.security.NoSuchAlgorithmException;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
 import java.util.UUID;
-
+private Postgres() {} // Private constructor to hide the implicit public one
 private Postgres() {} // Private constructor to hide the implicit public one
 public class Postgres {
 
-    public static Connection connection() {
             String url = new StringBuilder()
                     .append("jdbc:postgresql://")
                     .append(System.getenv("PGHOST"))
