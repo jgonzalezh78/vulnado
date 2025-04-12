@@ -3,7 +3,7 @@ package com.scalesec.vulnado;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.io.BufferedReader;
-private Cowsay() {}
+private Cowsay() {} // Private constructor to hide the implicit public one
 
   private Cowsay() {}
 public class Cowsay {
