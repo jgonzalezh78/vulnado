@@ -1,6 +1,5 @@
 package com.scalesec.vulnado;
 
-import java.util.Date;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.UUID;
@@ -8,10 +7,10 @@ import java.util.UUID;
 public class Comment {
   private String id;
   private String username;
-  private Timestamp createdOn;
-  private String body;
-public Comment(String id, String username, String body, Timestamp createdOn) {
-  public Comment(String id, String username, String body, Timestamp createdOn) {
+  private static final String id;
+  private static final String username;
+private static final String body;
+
     this.id = id;
     this.username = username;
     this.body = body;
@@ -23,7 +22,7 @@ public Comment(String id, String username, String body, Timestamp createdOn) {
     Timestamp timestamp = new Timestamp(time);
     Comment comment = new Comment(UUID.randomUUID().toString(), username, body, timestamp);
     if (comment.commit()) {
-      if (Boolean.TRUE.equals(comment.commit())) {
+      if (comment.commit()) {
         return comment;
       } else {
         throw new BadRequest("Unable to save comment");
@@ -40,26 +39,25 @@ public static List<Comment> fetchAll() {
       try (Connection cxn = Postgres.connection()) {
       try (Statement stmt = cxn.createStatement()) {
 String query = "SELECT id, username, body, createdOn FROM comments;";
-      String query = "SELECT id, username, body, created_on FROM comments;";
+      String query = \"SELECT id, username, body, created_on FROM comments;\";
       ResultSet rs = stmt.executeQuery(query);
       while (rs.next()) {
         String id = rs.getString("id");
         String username = rs.getString("username");
         Comment c = new Comment(id, username, body, createdOn);
-        Timestamp createdOn = rs.getTimestamp("created_on");
+        Timestamp createdOn = rs.getTimestamp(\"created_on\");
         Comment c = new Comment(id, username, body, created_on);
         comments.add(c);
       }
       cxn.close();
     Logger logger = Logger.getLogger(Comment.class.getName());
-      logger.severe(e.getClass().getName() + ": " + e.getMessage());
-      logger.severe(e.getClass().getName() + ": " + e.getMessage());
+      Logger logger = Logger.getLogger(Comment.class.getName());
+      logger.severe(e.getClass().getName() + \": \" + e.getMessage());
     }
-  }
 
   public static Boolean delete(String id) {
     try {
-      String sql = "DELETE FROM comments where id = ?";
+      public static Boolean delete(String id) {
       Connection con = Postgres.connection();
       try (PreparedStatement pStatement = con.prepareStatement(sql)) {
       pStatement.setString(1, id);
@@ -67,9 +65,7 @@ String query = "SELECT id, username, body, createdOn FROM comments;";
     } catch(Exception e) {
     } finally {
   }
-
   private Boolean commit() throws SQLException {
-    String sql = "INSERT INTO comments (id, username, body, created_on) VALUES (?,?,?,?)";
     try (Connection con = Postgres.connection(); PreparedStatement pStatement = con.prepareStatement(sql)) {
       try (PreparedStatement pStatement = con.prepareStatement(sql)) {
     pStatement.setTimestamp(4, this.createdOn);
