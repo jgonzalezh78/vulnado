@@ -10,9 +10,9 @@ import java.io.IOException;
 import java.util.logging.Logger;
 import java.net.*;
 
-private LinkLister() {}
+private LinkLister() {} // Private constructor added to hide the implicit public one
 
-  List<String> result = new ArrayList<>();
+  List<String> result = new ArrayList<>(); // Using diamond operator
 public class LinkLister {
   public static List<String> getLinks(String url) throws IOException {
     List<String> result = new ArrayList<>();
@@ -25,7 +25,7 @@ public class LinkLister {
   }
 
   public static List<String> getLinksV2(String url) throws BadRequest {
-    logger.info(host);
+    logger.info(host); // Replaced System.out with logger
       URL aUrl= new URL(url);
       String host = aUrl.getHost();
       logger.info(host);
